@@ -129,6 +129,7 @@ def transforma_rateio(df):
     df1.columns = novos_nomes
     filtro = df1['EMPRESA1'].isin(['RRPM','EDITORA','P2R'])
     df1 = df1[filtro]
+    df1.drop(columns=['DATA'], inplace=True)
     df1 = df1.query("VALOR != 0")
     df1 = df1.dropna()
 
@@ -143,6 +144,7 @@ def transforma_rateio(df):
     df2.columns = novos_nomes2
     filtro2 = df2['CONTA CRÉDITO'].isin(['2.1.1.11.0002'])
     df2 = df2[filtro2]
+    df2.drop(columns=['DATA'], inplace=True)
     df2 = df2.query("VALOR != 0")
     df2 = df2.dropna()
     # Padronização de centro de custo
@@ -224,7 +226,7 @@ def cria_zip_rateio(df_final, data_emissao, data_vencimento,select_tipo):
                     df_rateio['CRESP2'] = 'U' + df_rateio['CRESP1'].astype(str)
                     df_rateio['CRESP1'] = 'B' + df_rateio['CRESP1'].astype(str)
                     df_rateio['HISTÓRICO'] = 'H' + df_provisorio['HISTÓRICO'].iat[0]
-                    df_rateio['DATA'] = df_provisorio['DATA'].iat[0]
+                    #df_rateio['DATA'] = df_provisorio['DATA'].iat[0]
 
                     # Formatação de valores
                     soma_valor = df_rateio['VALOR'].sum()
@@ -359,7 +361,7 @@ def cria_zip_rateio(df_final, data_emissao, data_vencimento,select_tipo):
                     df_rateio['CRESP2'] = 'U' + df_rateio['CRESP1'].astype(str)
                     df_rateio['CRESP1'] = 'B' + df_rateio['CRESP1'].astype(str)
                     df_rateio['HISTÓRICO'] = 'H' + df_provisorio['HISTÓRICO'].iat[0]
-                    df_rateio['DATA'] = df_provisorio['DATA'].iat[0]
+                    #df_rateio['DATA'] = df_provisorio['DATA'].iat[0]
 
                     # Formatação de valores
                     soma_valor = df_rateio['VALOR'].sum()
